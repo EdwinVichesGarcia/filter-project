@@ -54,16 +54,19 @@ h1{
     flex-direction: column;
     gap: 30px;
     align-items: center;
-}
+};
 
-img{
+
+img {
     width: 150px;
     height: 250px;
     object-fit: contain;
 };
+    
+
 
 .name{
     font-weight: 300;
-}
+};
 
 
