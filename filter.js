@@ -86,7 +86,7 @@ searchInput.addEventListener("keyup", (e) => {
 
 const setCategories = () => {
 
-    const allCats = data.map(item => item.cat)
+    const allCats = data.map(item => item.cat); //new array of all categories
     const categories = [
         "All",//add all as the first category for display all products
         ...allCats.filter((item, i) => { //...is a spreader that combines arrays
@@ -116,7 +116,31 @@ categoriesContainer.addEventListener("click", (e) =>{
 
 }
 
+//create a function to set up price range filter
+
+const setPrice = () => {
+//extract price values from data
+    const priceList = data.map(item => item.price);
+    const minPrice = Math.min(...priceList);
+    const maxPrice = Math.max(...priceList);
+
+    //configure the range slider
+    priceRange.min = minPrice;
+    priceRange.max = maxPrice;
+    priceRange.value = maxPrice;
+    priceValue.textContent = "$" + maxPrice;
+
+    //add an event listener to filter product based on price range
+    priceRange.addEventListener("input", (e) =>{
+        priceValue.textContent = "$" + e.target.value //update displayed price value
+        displayProducts(data.filter(item => item.price <= e.target.value))
+
+    })
+
+
+}
+
+
+
+setPrice();
 setCategories();
-
-
-
